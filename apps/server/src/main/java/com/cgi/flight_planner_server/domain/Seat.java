@@ -1,4 +1,4 @@
-package com.cgi.app.domain;
+package com.cgi.flight_planner_server.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

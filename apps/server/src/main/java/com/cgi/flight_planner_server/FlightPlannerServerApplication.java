@@ -1,13 +1,13 @@
-package com.cgi.app;
+package com.cgi.flight_planner_server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppApplication {
+public class FlightPlannerServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AppApplication.class, args);
+		SpringApplication.run(FlightPlannerServerApplication.class, args);
 	}
 
 }

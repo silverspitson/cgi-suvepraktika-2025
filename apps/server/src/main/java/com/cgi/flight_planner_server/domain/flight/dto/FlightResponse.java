@@ -1,22 +1,20 @@
-package com.cgi.app.domain;
+package com.cgi.flight_planner_server.domain.flight.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 
-@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Flight {
+@Builder
+public class FlightResponse {
     private long id;
     private String destination;
-    private LocalDateTime date;
-    private Duration duration;
+    private LocalDateTime flightDate;
+    private LocalDateTime duration;
     private double price;
-    //private PlaneType planeType;
 }

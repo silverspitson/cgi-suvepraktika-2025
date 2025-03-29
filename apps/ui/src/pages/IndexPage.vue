@@ -7,7 +7,7 @@
           :rows="flights"
           :columns="columns"
           virtual-scroll
-          
+          binary-state-sort
           v-model:pagination="pagination"
           :rows-per-page-options="[0]"
         >
@@ -35,17 +35,26 @@ import { onMounted, ref } from 'vue';
 import { getFlights } from 'src/services/flightService';
 import type { Flight } from 'src/models/flight';
 import type { QTableProps } from 'quasar';
+import  { date } from 'quasar';
 
 const pagination = ref({rowsPerPage: 0})
 const flights = ref<Flight[]>([]);
 const columns: QTableProps['columns'] = [
   { name: 'destination', align: 'left', label: 'Destination', field: 'destination', sortable: true},
-  { name: 'flightDate', align: 'left', label: 'Flight date', field: 'flightDate', sortable: true},
-  { name: 'duration', align: 'left', label: 'Flight duration', field: 'duration'},
-  { name: 'price', align: 'left', label: 'Price', field: 'price'},
+  { name: 'flightDate', align: 'left', label: 'Flight date', field: 'flightDate', sortable: true, format: (value) => formatDate(value)},
+  { name: 'duration', align: 'left', label: 'Flight duration', field: 'duration', format: (value) => formatDuration(value)},
+  { name: 'price', align: 'left', label: 'Price', field: 'price', sortable: true},
   { name: 'selectFlight', align: 'right', label: '', field: ''}
 ]
 
+const formatDuration = (flightDuration: Date) => {
+  const formattedDuration = date.formatDate(flightDuration, "HH:mm").split(":")
+  return `${formattedDuration[0]}h ${formattedDuration[1]}min`;
+}
+
+const formatDate = (flightDate: Date) => {
+  return date.formatDate(flightDate, "YYYY-MM-DD HH:mm:ss")
+}
 
 const fetchFlights = async() => {
   try {
